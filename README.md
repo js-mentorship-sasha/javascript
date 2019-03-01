@@ -26,6 +26,8 @@ There is a 7 different data types name:
 6."undefined" - variable without any date or data with undefined value
 7."null" - unknown value
 
+when we type let someVariable = null, we clear value of this variable. So null is value with nothing.
+
 
 There is also 2 form of typeof without any difference "typeof x and typeof(x)"
 
@@ -40,3 +42,32 @@ An operand – is what operators are applied to. For instance, in the multiplica
 
 An operator is unary if it has a single operand. For example, the unary negation - reverses the sign of a number.
 An operator is binary if it has two operands. 
+
+    Remainder %
+ The result of a % b is the remainder of the integer division of a by b.
+
+   Exponentiation **
+ For a natural number b, the result of a ** b is a multiplied by itself b times.
+
+  Increment/decrement
+ Increment ++ increases a variable by 1
+ a++ = a+1;
+
+ Decrement -- decreases a variable by 1
+ a-- = a-1;
+
+!!! Increment/decrement can only be applied to variables. Trying to use it on a value like 5++ will give an error. !!!
+
+   Bitwise operators
+    AND - ( & )
+    OR - ( | )
+    XOR  - ( ^ )
+    NOT = ( ~ )
+    LEFT SHIFT - ( << )
+    RIGHT SHIFT - ( >> )
+    ZERO-FILL RIGHT SHIFT - ( >>> )
+
+   Comma 
+   (rare to use)
+ The comma operator allows us to evaluate several expressions, dividing them with a comma ,. Each of them is evaluated but only the result of the last one is returned.
+
