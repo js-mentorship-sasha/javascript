@@ -456,3 +456,91 @@ for (let i = 0; i < 3; i++) { ... }
 To make an “infinite” loop, usually the while(true) construct is used. Such a loop, just like any other, can be stopped with the break directive.
 
 If we don’t want to do anything in the current iteration and would like to forward to the next one, we can use the continue directive.
+
+
+
+####### **The "switch" statement**
+
+A switch statement can replace multiple if checks. It gives a more descriptive way to compare a value with multiple variants.
+
+Example :
+```(javascript)
+switch(x) {
+  case 'value1':  // if (x === 'value1')
+    ...
+    [break]
+
+  case 'value2':  // if (x === 'value2')
+    ...
+    [break]
+
+  default:
+    ...
+    [break]
+}
+```
+
+    The value of x is checked for a strict equality to the value from the first case (that is, value1) then to the second (value2) and so on.
+    If the equality is found, switch starts to execute the code starting from the corresponding case, until the nearest break (or until the end of switch).
+    If no case is matched then the default code is executed (if it exists).
+ 
+    If there is no break then the execution continues with the next case without any checks:
+    ```(javascript)
+    let a = 2 + 2;
+     switch (a) {
+      case 3:
+       alert( 'Too small' );
+      case 4:
+       alert( 'Exactly!' );
+      case 5:
+      alert( 'Too big' );
+     default:
+      alert( "I don't know such values" );
+      }
+    ```
+    So, in this example execution starts from 4(skip 3 because a=4 -> execution start from cas '4'), end we will see 3 results:
+    '''(javascript)
+     alert( 'Exactly!' );
+     alert( 'Too big' );
+     alert( "I don't know such values" );
+    ```
+    Any expression can be a switch/case argument:
+    ```(javascript)
+     let a = "1";
+    let b = 0; 
+    switch (+a) {
+     case b + 1:
+     alert("this runs, because +a is 1, exactly equals b+1");
+     break;
+    default:
+     alert("this doesn't run");
+     }
+    ```
+    Here +a gives 1, that’s compared with b + 1 in case, and the corresponding code is executed.
+
+
+
+    Grouping of “case”
+     We can group any cases if they hhave same execution
+     Example:
+      ```(javascript)
+       let a = 2 + 2;
+       switch (a) {
+       case 4:
+        alert('Right!');
+        break;
+       case 3:                    // (*) grouped two cases
+       case 5:
+        alert('Wrong!');
+        alert("Why don't you take a math class?");
+       break;
+      default:
+        alert('The result is strange. Really.');
+        }
+      ```
+      So, if we run case 3 and or case 5 we will have same execution.
+
+
+          Type matters:
+ The values must be of the same type to match. If not - then execute 'default'.
+
