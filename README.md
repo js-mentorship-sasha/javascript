@@ -544,5 +544,5 @@ switch(x) {
 
 
           Type matters:
- The values must be of the same type to match. If not - then execute 'default'.
+         The values must be of the same type to match. If not - then execute 'default'.
 
