@@ -71,7 +71,7 @@ An operator is binary if it has two operands.
    (rare to use)
  The comma operator allows us to evaluate several expressions, dividing them with a comma ,. Each of them is evaluated but only the result of the last one is returned.
 
-########################################### Comparisons
+## Comparisons
   Comparison type: '<, >, =, >=, <=, !=, ===, ==,'
   When we use 'if', condition was already boolean.
   for example:
@@ -115,19 +115,19 @@ show message with two option "OK" and "CANCLE", just for boolean.
 
 ##   Conditional operators: if, '?'
 
-# The “if” statement
+### The “if” statement
 
 The if statement evaluates a condition and, if the condition’s result is true, executes a block of code.
 
-# Boolean conversion
+#### Boolean conversion
 
 The if (…) statement evaluates the expression in its parentheses and converts the result to a boolean.
 
-# The “else” clause
+### The “else” clause
 
 The if statement may contain an optional “else” block. It executes when the condition is false.
 
-## Several conditions: “else if”
+### Several conditions: “else if”
 
 We can do multiplicate time "else if" if its needed. Same as "else"
 
@@ -167,7 +167,7 @@ let result = condition ? value1 : value2;
 
 
 
-######### Logical operators
+## Logical operators
 
  There are three logical operators in JavaScript: 
  1.   || (OR) -  used for test if any conditions is true.
@@ -175,17 +175,17 @@ let result = condition ? value1 : value2;
  3.   ! (NOT)
 
 
-# || (OR)
+### || (OR)
 Getting the first truthy value from a list of variables or expressions.
 
-# && (AND)
+### && (AND)
 && (AND) finds the first falsy value
 The AND && operator does the following:
    Evaluates operands from left to right.
    For each operand, converts it to a boolean. If the result isfalse, stops and returns the original value of that operand.
    If all operands have been evaluated (i.e. all were truthy),returns the last operand.
 
-# Precedence of AND && is higher than OR ||
+### Precedence of AND && is higher than OR ||
 So the code a && b || c && d is essentially the same as if the && expressions were in parentheses: (a && b) || (c && d).
 
 
@@ -208,7 +208,7 @@ if (x > 0) {
 ```
 
 
-### ! (NOT)
+## ! (NOT)
 
 ```
 result = !value;
@@ -227,7 +227,7 @@ That is, the first NOT converts the value to boolean and returns the inverse, an
 
 The precedence of NOT ! is the highest of all logical operators, so it always executes first, before && or ||.
 
- ############ Loops: while and for
+ ## Loops: while and for
 
  We have 3 type of loops:
 1. while - when condition is checked before each iteration.
@@ -459,7 +459,7 @@ If we don’t want to do anything in the current iteration and would like to for
 
 
 
-####### **The "switch" statement**
+## **The "switch" statement**
 
 A switch statement can replace multiple if checks. It gives a more descriptive way to compare a value with multiple variants.
 
@@ -499,7 +499,7 @@ switch(x) {
       }
     ```
     So, in this example execution starts from 4(skip 3 because a=4 -> execution start from cas '4'), end we will see 3 results:
-    '''(javascript)
+    ```(javascript)
      alert( 'Exactly!' );
      alert( 'Too big' );
      alert( "I don't know such values" );
