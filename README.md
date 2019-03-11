@@ -484,9 +484,9 @@ switch(x) {
     If the equality is found, switch starts to execute the code starting from the corresponding case, until the nearest break (or until the end of switch).
     If no case is matched then the default code is executed (if it exists).
  
-    If there is no break then the execution continues with the next case without any checks:
+    ```If there is no break then the execution continues with the next case without any checks:```
     ```(javascript)
-    let a = 2 + 2;
+     let a = 2 + 2;
      switch (a) {
       case 3:
        alert( 'Too small' );
@@ -497,15 +497,17 @@ switch(x) {
      default:
       alert( "I don't know such values" );
       }
-    ```
+      ```
+     
     So, in this example execution starts from 4(skip 3 because a=4 -> execution start from cas '4'), end we will see 3 results:
-    ```(javascript)
+
+     ```(javascript)
      alert( 'Exactly!' );
      alert( 'Too big' );
      alert( "I don't know such values" );
-    ```
+     ```
     Any expression can be a switch/case argument:
-    ```(javascript)
+     ```(javascript)
      let a = "1";
     let b = 0; 
     switch (+a) {
@@ -515,7 +517,7 @@ switch(x) {
     default:
      alert("this doesn't run");
      }
-    ```
+     ```
     Here +a gives 1, that’s compared with b + 1 in case, and the corresponding code is executed.
 
 
