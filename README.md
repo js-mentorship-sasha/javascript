@@ -599,7 +599,7 @@ alert( from ); // Ann
 This example show how works global and local parameters(variable) in function
 
 
-## Returning a value
+### Returning a value
  A function can return a value back into the calling code as the result:
  ```(javascript)
 function sum(a, b) {
@@ -610,4 +610,208 @@ let result = sum(1, 2);
 alert( result ); // 3
  ```
 
+ Return can be placed in any place, when execution reaches it, the function stops and the value is returned to the calling code.
+ There may be many occerences of return in a single function. 
+ Example:
+```(javascript)
+function checkAge(age) {
+  if (age > 18) {
+    return true;
+  } else {
+    return confirm('Do you have permission from your parents?');
+  }
+}
+
+let age = prompt('How old are you?', 18);
+
+if ( checkAge(age) ) {
+  alert( 'Access granted' );
+} else {
+  alert( 'Access denied' );
+}
+ ```
+
+ It is possible to use return without a value. That causes the function to exit immediately.
+
+For example:
+```(javascript)
+function showMovie(age) {
+  if ( !checkAge(age) ) {
+    return;
+  }
+
+  alert( "Showing you the movie" ); // (*)
+  // ...
+}
+```
+In the code above, if checkAge(age) returns false, then showMovie won’t proceed to the alert.
+
+### A function with an empty return or without it returns undefined
+ If a function does not return a value, it is the same as if it returns undefined:
+ ```(javascript)
+function doNothing() { /* empty */ }
+
+alert( doNothing() === undefined ); // true
+ ```
+
+ An empty return is also the same as return undefined:
+
+```(javascript)
+function doNothing() {
+  return;
+}
+
+alert( doNothing() === undefined ); // true
+```
+
+
+## Function expressions and arrows
+The syntax of Function Declaration:
+
+function sayHi() {
+  alert( "Hello" );
+}
+
+There is another syntax for creating a function that is called a Function Expression.
+
+It looks like this:
+
+let sayHi = function() {
+  alert( "Hello" );
+};
+
+Copy functions to another variable:
+
+```(javascript)
+function sayHi() {   // (1) create
+  alert( "Hello" );
+}
+
+let func = sayHi;    // (2) copy
+
+func(); // Hello     // (3) run the copy (it works)!
+sayHi(); // Hello    //     this still works too (why wouldn't it)
+```
+
+What happens:
+
+ The Function Declaration (1) creates the function and puts it into the variable named sayHi.
+
+ Line (2) copies it into the variable func.
+
+ Please note again: there are no parentheses after sayHi. If there were, then func = sayHi() would write the result of the call sayHi() into func, not the function sayHi itself.
+
+ Now the function can be called as both sayHi() and func().
+
+Note:
+By syntax  Function Expression have a semicolon `;` but Function Declaration does not.
+
+### Callback functions
+We’ll write a function ask(question, yes, no) with three parameters:
+
+question
+    Text of the question
+yes
+    Function to run if the answer is “Yes”
+no
+    Function to run if the answer is “No”
+
+The function should ask the question and, depending on the user’s answer, call yes() or no():
+
+```(javascript)
+function ask(question, yes, no) {
+  if (confirm(question)) yes()
+  else no();
+}
+
+function showOk() {
+  alert( "You agreed." );
+}
+
+function showCancel() {
+  alert( "You canceled the execution." );
+}
+
+// usage: functions showOk, showCancel are passed as arguments to ask
+ask("Do you agree?", showOk, showCancel);
+```
+###The arguments of ask are called callback functions or just callbacks.
+We can use Function Expressions to write the same function much shorter:
+```(javascript)
+function ask(question, yes, no) {
+  if (confirm(question)) yes()
+  else no();
+}
+
+ask(
+  "Do you agree?",
+  function() { alert("You agreed."); },
+  function() { alert("You canceled the execution."); }
+);
+```
+
+
+###A function is a value representing an “action”
+Regular values like strings or numbers represent the data.
+
+A function can be perceived as an action.
+
+We can pass it between variables and run when we want.
+
+##Function Expression vs Function Declaration
+
+Function Declaration: a function, declared as a separate statement, in the main code flow.
+
  
+Function Declaration:
+```(javascript)
+function sum(a, b) {
+  return a + b;
+}```
+
+Function Expression: a function, created inside an expression or inside another syntax construct. Here, the function is created at the right side of the “assignment expression” =:
+
+ Function Expression:
+```(javascript)
+let sum = function(a, b) {
+  return a + b;
+};
+```
+
+
+A Function Expression is created when the execution reaches it and is usable from then on.
+
+Once the execution flow passes to the right side of the assignment let sum = function… – here we go, the function is created and can be used (assigned, called, etc. ) from now on.
+
+Function Declarations are different.
+
+A Function Declaration is usable in the whole script/code block.
+
+In other words, when JavaScript prepares to run the script or a code block, it first looks for Function Declarations in it and creates the functions. We can think of it as an “initialization stage”.
+
+And after all of the Function Declarations are processed, the execution goes on.
+
+As a result, a function declared as a Function Declaration can be called earlier than it is defined.
+
+For example, this works:
+```(javascript)
+sayHi("John"); // Hello, John
+
+function sayHi(name) {
+  alert( `Hello, ${name}` );
+}
+```
+
+The Function Declaration sayHi is created when JavaScript is preparing to start the script and is visible everywhere in it.
+
+…If it was a Function Expression, then it wouldn’t work:
+
+```(javascript)
+sayHi("John"); // error!
+
+let sayHi = function(name) {  // (*) no magic any more
+  alert( `Hello, ${name}` );
+};
+```
+
+Function Expressions are created when the execution reaches them. That would happen only in the line (*). Too late.
