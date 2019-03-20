@@ -3,18 +3,18 @@
 **The modern mode**, "use strict"
 To keep old version of code working "use strict" in the top.
 
-                                             Variables
+## Variables
   Variable is name of data storage. There is 2 type of variables, "let" and "const".
   let - variable that can be changet
   const - this variable cannot be changet.
    
-                                           Variable naming
+## Variable naming
 1. First litter must be not a number(digit).
 2. Not reserved name(reserved by programming language).
 3. The name must contain only letters, digits, or the symbols $ and _.
 4. The name should give a description of this variable
         
-                                             Data types
+##  Data types
                                              
 A variable in JS can contain any data.
 There is a 7 different data types name:
@@ -31,11 +31,11 @@ when we type let someVariable = null, we clear value of this variable. So null i
 
 There is also 2 form of typeof without any difference "typeof x and typeof(x)"
 
-                                   Type Conversions
+## Type Conversions
                                    
 We can convert value type. Also JS have functions that automatically convert.
 
-                                    Operators
+## Operators
 
 
 An operand – is what operators are applied to. For instance, in the multiplication of 5 * 2 there are two operands: the left operand is 5 and the right operand is 2. Sometimes, people call these “arguments” instead of “operands”.
@@ -479,12 +479,11 @@ switch(x) {
     [break]
 }
 ```
-
-    The value of x is checked for a strict equality to the value from the first case (that is, value1) then to the second (value2) and so on.
+The value of x is checked for a strict equality to the value from the first case (that is, value1) then to the second (value2) and so on.
     If the equality is found, switch starts to execute the code starting from the corresponding case, until the nearest break (or until the end of switch).
     If no case is matched then the default code is executed (if it exists).
  
-    ```If there is no break then the execution continues with the next case without any checks:```
+ If there is no break then the execution continues with the next case without any checks:
     ```(javascript)
      let a = 2 + 2;
      switch (a) {
@@ -546,3 +545,69 @@ switch(x) {
           Type matters:
          The values must be of the same type to match. If not - then execute 'default'.
 
+
+# Functions
+
+If we need use action many time in many places - we use Functions.
+
+To create a function we can use a function declaration:
+
+```(Javascript)
+function nameFunction(parameters) {
+  the function body
+}
+```
+### Local variables
+Local variable - variable that created in function and this variable can be used only in this function, outside this function this variable is not working.
+
+### Outer variables
+Outer variables - variable created outside of function and can be used at any function(global variable).
+Global variables are visible from any function (unless shadowed by locals).
+ Usually, a function declares all variables specific to its task. Global variables only store project-level data, and it’s important that these variables are accessible from anywhere. Modern code has few or no globals. Most variables reside in their functions.
+
+ ### Parameters
+  We can pass arbitrary data to functions using parameters (also called function arguments) .
+  Example:
+  ```(javascript)
+function showMessage(from, text) { // arguments: from, text
+  alert(from + ': ' + text);
+}
+
+showMessage('Ann', 'Hello!'); // Ann: Hello! (*)
+showMessage('Ann', "What's up?"); // Ann: What's up? (**)
+  ```
+  Parameters - it's like variable, but temporary.
+  ### When the function is called in lines (*) and (**), the given values are copied to local variables from and text. Then the function uses them.
+
+
+  Here’s one more example: we have a variable from and pass it to the function. Please note: the function changes from, but the change is not seen outside, because a function always gets a copy of the value:
+```(javascript)
+function showMessage(from, text) {
+
+  from = '*' + from + '*'; // make "from" look nicer
+
+  alert( from + ': ' + text );
+}
+
+let from = "Ann";
+
+showMessage(from, "Hello"); // *Ann*: Hello
+
+// the value of "from" is the same, the function modified a local copy
+alert( from ); // Ann
+```
+This example show how works global and local parameters(variable) in function
+
+
+## Returning a value
+ A function can return a value back into the calling code as the result:
+ ```(javascript)
+function sum(a, b) {
+  return a + b;
+}
+
+let result = sum(1, 2);
+alert( result ); // 3
+ ```
+
+ 
