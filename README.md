@@ -815,3 +815,71 @@ let sayHi = function(name) {  // (*) no magic any more
 ```
 
 Function Expressions are created when the execution reaches them. That would happen only in the line (*). Too late.
+
+
+
+###When should you choose Function Declaration versus Function Expression?
+In general we use Declaration fucntion because it much easy read and we need declare a function. 
+
+### Arrow functions
+
+```(javascript)
+let func = (arg1, arg2, ...argN) => expression
+```
+This creates a function func that has arguments arg1..argN, evaluates the expression on the right side with their use and returns its result.
+
+In other words, it’s roughly the same as:
+
+```(javascript)
+let func = function(arg1, arg2, ...argN) {
+  return expression;
+};
+```
+
+```(javascript)
+let sum = (a, b) => a + b;
+
+/* The arrow function is a shorter form of:
+
+let sum = function(a, b) {
+  return a + b;
+};
+*/
+
+alert( sum(1, 2) ); // 3
+```
+If we have only one argument, then parentheses can be omitted, making that even shorter:
+```(javascript)
+// same as
+// let double = function(n) { return n * 2 }
+let double = n => n * 2;
+
+alert( double(3) ); // 6
+```
+If there are no arguments, parentheses should be empty (but they should be present):
+```(javascript)
+let sayHi = () => alert("Hello!");
+
+sayHi();
+```
+example arrow function:
+```(javascript)
+let age = prompt("What is your age?", 18);
+
+let welcome = (age < 18) ?
+  () => alert('Hello') :
+  () => alert("Greetings!");
+
+welcome(); // ok now
+```
+
+### Multiline arrow functions
+In multiline arrow function we need use curly braces:
+```(javascript)
+let sum = (a, b) => {  // the curly brace opens a multiline function
+  let result = a + b;
+  return result; // if we use curly braces, use return to get results
+};
+
+alert( sum(1, 2) ); // 3
+```
