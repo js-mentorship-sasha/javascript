@@ -484,7 +484,7 @@ The value of x is checked for a strict equality to the value from the first case
     If no case is matched then the default code is executed (if it exists).
  
  If there is no break then the execution continues with the next case without any checks:
-    ```(javascript)
+  ```(javascript)
      let a = 2 + 2;
      switch (a) {
       case 3:
@@ -496,18 +496,19 @@ The value of x is checked for a strict equality to the value from the first case
      default:
       alert( "I don't know such values" );
       }
-      ```
+  ```
      
-    So, in this example execution starts from 4(skip 3 because a=4 -> execution start from cas '4'), end we will see 3 results:
+ So, in this example execution starts from 4(skip 3 because a=4 -> execution start from cas '4'), end we will see 3 results:
 
-     ```(javascript)
+   (javascript)
      alert( 'Exactly!' );
      alert( 'Too big' );
      alert( "I don't know such values" );
      ```
     Any expression can be a switch/case argument:
-     ```(javascript)
-     let a = "1";
+
+    ```(javascript)
+    let a = "1";
     let b = 0; 
     switch (+a) {
      case b + 1:
@@ -516,7 +517,7 @@ The value of x is checked for a strict equality to the value from the first case
     default:
      alert("this doesn't run");
      }
-     ```
+    ```
     Here +a gives 1, that’s compared with b + 1 in case, and the corresponding code is executed.
 
 
@@ -524,21 +525,21 @@ The value of x is checked for a strict equality to the value from the first case
     Grouping of “case”
      We can group any cases if they hhave same execution
      Example:
-      ```(javascript)
-       let a = 2 + 2;
-       switch (a) {
-       case 4:
-        alert('Right!');
-        break;
-       case 3:                    // (*) grouped two cases
-       case 5:
-        alert('Wrong!');
-        alert("Why don't you take a math class?");
-       break;
-      default:
-        alert('The result is strange. Really.');
-        }
-      ```
+   ```(javascript)   
+    let a = 2 + 2;
+    switch (a) {
+    case 4:
+    alert('Right!');
+    break;
+    case 3:                    // (*) grouped two cases
+    case 5:
+    alert('Wrong!');
+    alert("Why don't you take a math class?");
+    break;
+    default:
+    alert('The result is strange. Really.');
+     }
+   ```
       So, if we run case 3 and or case 5 we will have same execution.
 
 
