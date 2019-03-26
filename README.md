@@ -747,8 +747,8 @@ ask(
   "Do you agree?",
   function() { alert("You agreed."); },
   function() { alert("You canceled the execution."); }
-);
-```
+);```
+
 
 
 ###A function is a value representing an “action”
@@ -767,7 +767,8 @@ Function Declaration:
 ```(javascript)
 function sum(a, b) {
   return a + b;
-}```
+}
+```
 
 Function Expression: a function, created inside an expression or inside another syntax construct. Here, the function is created at the right side of the “assignment expression” =:
 
