@@ -883,3 +883,64 @@ let sum = (a, b) => {  // the curly brace opens a multiline function
 
 alert( sum(1, 2) ); // 3
 ```
+
+
+
+
+
+# Objects
+
+ For creating objects we use {..}, example of empty Objects:
+
+ ```(javascript)
+let user = new Object(); // "object constructor" syntax
+let user = {};  // "object literal" syntax
+```
+That declaration is called an object literal.
+
+## Literals and properties
+
+We can immediately put some properties into {...} as “key: value” pairs:
+
+```(javascript)
+let user = {     // an object
+  name: "John",  // by key "name" store value "John"
+  age: 30        // by key "age" store value 30
+};
+```
+For get accesible to value of objects we use dot notation:
+```(javascript)
+// get fields of the object:
+alert( user.name ); // John
+alert( user.age ); // 30
+```
+
+## Square brackets
+For multiword properties, the dot access doesn’t work:
+
+```(javascript)
+// this would give a syntax error
+user.likes birds = true
+```
+That’s because the dot requires the key to be a valid variable identifier. That is: no spaces and other limitations.
+
+Square brackets also provide a way to obtain the property name as the result of any expression – as opposed to a literal string – like from a variable as follows:
+
+```(javascript)
+let key = "likes birds";
+
+// same as user["likes birds"] = true;
+user[key] = true;
+```
+Example of square brackets:
+```(javascript)
+let user = {
+  name: "John",
+  age: 30
+};
+
+let key = prompt("What do you want to know about the user?", "name");
+
+// access by variable
+alert( user[key] ); // John (if enter "name")
+```
