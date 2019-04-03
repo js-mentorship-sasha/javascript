@@ -946,3 +946,367 @@ let key = prompt("What do you want to know about the user?", "name");
 // access by variable
 alert( user[key] ); // John (if enter "name")
 ```
+
+## Computed properties
+We can use square brackets in an object literal. That’s called computed properties:
+```(javascript)
+let fruit = prompt("Which fruit to buy?", "apple");
+
+let bag = {
+  [fruit]: 5, // the name of the property is taken from the variable fruit
+};
+
+alert( bag.apple ); // 5 if fruit="apple"
+```
+The meaning of a computed property is simple: [fruit] means that the property name should be taken from fruit.
+
+So, if a visitor enters "apple", bag will become {apple: 5}.
+Same as:
+```(javascript)
+let fruit = prompt("Which fruit to buy?", "apple");
+let bag = {};
+
+// take property name from the fruit variable
+bag[fruit] = 5;
+```
+
+We can use more complex expressions inside square brackets:
+
+```(javascript)
+let fruit = 'apple';
+let bag = {
+  [fruit + 'Computers']: 5 // bag.appleComputers = 5
+};
+```
+
+## Property value shorthand
+
+In real code we often use existing variables as values for property names:
+```(javascript)
+function makeUser(name, age) {
+  return {
+    name: name,
+    age: age
+    // ...other properties
+  };
+}
+
+let user = makeUser("John", 30);
+alert(user.name); // John
+```
+In the example above, properties have the same names as variables. The use-case of making a property from a variable is so common, that there’s a special property value shorthand to make it shorter.
+
+Instead of name:name we can just write name, like this:
+```(javascript)
+function makeUser(name, age) {
+  return {
+    name, // same as name: name
+    age   // same as age: age
+    // ...
+  };
+}
+```
+We can use both normal properties and shorthands in the same object:
+
+```(javascript)
+let user = {
+  name,  // same as name:name
+  age: 30
+};
+```
+
+## Existence check
+
+A notable objects feature is that it’s possible to access any property. There will be no error if the property doesn’t exist! Accessing a non-existing property just returns undefined. It provides a very common way to test whether the property exists – to get it and compare vs undefined:
+
+```(javascript)
+let user = {};
+
+alert( user.noSuchProperty === undefined ); // true means "no such property"
+```
+
+There is a special operator to check existence of a property "in" (instead of "... === undefined" ): 
+```(javascript)
+let user = { name: "John", age: 30 };
+
+alert( "age" in user ); // true, user.age exists
+alert( "blabla" in user ); // false, user.blabla doesn't exist
+```
+On the left side must be a property name. That’s usually a quoted string.
+But if we omit quotes then its mean that a variable containing the actual name will be tested.
+So if we skip quotes, we will check if on this variable have value that contained on this objects:
+```(javascript)
+let user = { age: 30 };
+
+let key = "age";
+alert( key in user ); // true, takes the name from key and checks for such property
+```
+
+## The “for…in” loop
+To walk over all keys of an object, there exists a special form of the loop: for..in. This is a completely different thing from the for(;;) construct that we studied before.
+The syntax:
+```(javascript)
+for (key in object) {
+  // executes the body for each key among object properties
+}
+```
+Example:
+```(javascript)
+let user = {
+  name: "John",
+  age: 30,
+  isAdmin: true
+};
+
+for (let key in user) {
+  // keys
+  alert( key );  // name, age, isAdmin
+  // values for the keys
+  alert( user[key] ); // John, 30, true
+}
+```
+Note that all “for” constructs allow us to declare the looping variable inside the loop, like let key here.
+
+Also, we could use another variable name here instead of key. For instance, "for (let prop in obj)" is also widely used.
+
+## Ordered like an object
+
+Are objects ordered? In other words, if we loop over an object, do we get all properties in the same order they were added? Can we rely on this?
+
+The short answer is: “ordered in a special fashion”: integer properties are sorted, others appear in creation order. The details follow.
+
+```(javascript)
+let codes = {
+  "49": "Germany",
+  "41": "Switzerland",
+  "44": "Great Britain",
+  // ..,
+  "1": "USA"
+};
+
+for (let code in codes) {
+  alert(code); // 1, 41, 44, 49
+}
+```
+The phone codes go in the ascending sorted order, because they are integers. So we see 1, 41, 44, 49.
+
+### Integer properties? What’s that?
+The “integer property” term here means a string that can be converted to-and-from an integer without a change.
+```(javascript)
+// Math.trunc is a built-in function that removes the decimal part
+alert( String(Math.trunc(Number("49"))) ); // "49", same, integer property
+alert( String(Math.trunc(Number("+49"))) ); // "49", not same "+49" ⇒ not integer property
+alert( String(Math.trunc(Number("1.2"))) ); // "1", not same "1.2" ⇒ not integer property
+```
+…On the other hand, if the keys are non-integer, then they are listed in the creation order, for instance:
+
+```(javascript)
+let user = {
+  name: "John",
+  surname: "Smith"
+};
+user.age = 25; // add one more
+
+// non-integer properties are listed in the creation order
+for (let prop in user) {
+  alert( prop ); // name, surname, age
+}
+```
+So if we add a plus "+" sign before each code it will be not sorted:
+```(javascript)
+let codes = {
+  "+49": "Germany",
+  "+41": "Switzerland",
+  "+44": "Great Britain",
+  // ..,
+  "+1": "USA"
+};
+
+for (let code in codes) {
+  alert( +code ); // 49, 41, 44, 1
+}
+```
+
+## Copying by reference
+One of the fundamental differences of objects vs primitives is that they are stored and copied “by reference”.
+Primitive values: strings, numbers, booleans – are assigned/copied “as a whole value”.
+So, if we copy variable - it will be save new value. But if we copy object - it will just give acces to this "value" for another object. 
+Variable:
+Here pharse = "Hello", if we change prhare value - message value are not chage, and we if chage message value - phrase value not changed.
+```(javascript)
+let message = "Hello!";
+let phrase = message;
+```
+Object:
+When an object variable is copied – the reference is copied, the object is not duplicated.
+If we imagine an object as a cabinet, then a variable is a key to it. Copying a variable duplicates the key, but not the cabinet itself.
+
+So if we copy object1 to object2 then we just get acces to same value for object1 and object2, and if we change sometihng in object1 it will be changed in object2 also.
+```(javascript)
+let user = { name: 'John' };
+
+let admin = user;
+
+admin.name = 'Pete'; // changed by the "admin" reference
+
+alert(user.name); // 'Pete', changes are seen from the "user" reference
+```
+The example above demonstrates that there is only one object. As if we had a cabinet with two keys and used one of them (admin) to get into it. Then, if we later use the other key (user) we would see changes.
+
+It means that we have only one object with 2 different name and with one common value.
+
+
+
+## Comparison by reference
+
+The equality == and strict equality === operators for objects work exactly the same.
+
+Two objects are equal only if they are the same object.
+
+For instance, two variables reference the same object, they are equal:
+
+```(javascript)
+let a = {};
+let b = a; // copy the reference
+
+alert( a == b ); // true, both variables reference the same object
+alert( a === b ); // true
+```
+
+And here two independent objects are not equal, even though both are empty:
+
+```(javascript)
+let a = {};
+let b = {}; // two independent objects
+
+alert( a == b ); // false
+```
+
+For comparisons like obj1 > obj2 or for a comparison against a primitive obj == 5, objects are converted to primitives. We’ll study how object conversions work very soon, but to tell the truth, such comparisons are necessary very rarely and usually are a result of a coding mistake.
+
+
+## Const object
+An object declared as const can be changed.
+
+```(javascript)
+const user = {
+  name: "John"
+};
+
+user.age = 25; // (*)
+
+alert(user.age); // 25
+```
+It's not error, because we dont change any property of user, we just add new. 
+But if we try change - we will see error:
+```(javascript)
+const user = {
+  name: "John"
+};
+
+// Error (can't reassign user)
+user = {
+  name: "Pete"
+};
+```
+
+## Cloning and merging, Object.assign
+Somethimes we need copy object with all properies instead of a just link.
+Need to create new object and then copy property from another onbject:
+```(javascript)
+let user = {
+  name: "John",
+  age: 30
+};
+
+let clone = {}; // the new empty object
+
+// let's copy all user properties into it
+for (let key in user) {
+  clone[key] = user[key];
+}
+
+// now clone is a fully independent clone
+clone.name = "Pete"; // changed the data in it
+
+alert( user.name ); // still John in the original object
+```
+Also we can use the method Object.assign for that.
+
+The syntax is:
+
+```(javascript)
+Object.assign(dest[, src1, src2, src3...])
+```
+
+    Arguments dest, and src1, ..., srcN (can be as many as needed) are objects.
+    It copies the properties of all objects src1, ..., srcN into dest. In other words, properties of all arguments starting from the 2nd are copied into the 1st. Then it returns dest.
+
+For instance, we can use it to merge several objects into one:
+```(javascript)
+let user = { name: "John" };
+
+let permissions1 = { canView: true };
+let permissions2 = { canEdit: true };
+
+// copies all properties from permissions1 and permissions2 into user
+Object.assign(user, permissions1, permissions2);
+
+// now user = { name: "John", canView: true, canEdit: true }
+```
+If the receiving object (user) already has the same named property, it will be overwritten:
+
+```(javascript)
+let user = { name: "John" };
+
+// overwrite name, add isAdmin
+Object.assign(user, { name: "Pete", isAdmin: true });
+
+// now user = { name: "Pete", isAdmin: true }
+```
+
+We also can use Object.assign to replace the loop for simple cloning:
+
+```(javascript)
+let user = {
+  name: "John",
+  age: 30
+};
+
+let clone = Object.assign({}, user);
+```
+It copies all properties of user into the empty object and returns it. Actually, the same as the loop, but shorter.
+
+Now it’s not enough to copy clone.sizes = user.sizes, because the user.sizes is an object, it will be copied by reference. So clone and user will share the same sizes:
+```(javascript)
+let user = {
+  name: "John",
+  sizes: {
+    height: 182,
+    width: 50
+  }
+};
+
+let clone = Object.assign({}, user);
+
+alert( user.sizes === clone.sizes ); // true, same object
+
+// user and clone share sizes
+user.sizes.width++;       // change a property from one place
+alert(clone.sizes.width); // 51, see the result from the other one
+```
+To fix that, we should use the cloning loop that examines each value of user[key] and, if it’s an object, then replicate its structure as well. That is called a “deep cloning”.
+
+There’s a standard algorithm for deep cloning that handles the case above and more complex cases, called the Structured cloning algorithm. In order not to reinvent the wheel, we can use a working implementation of it from the JavaScript library lodash, the method is called _.cloneDeep(obj).
+### Summary of objects
+To access a property, we can use:
+
+    The dot notation: obj.property.
+    Square brackets notation obj["property"]. Square brackets allow to take the key from a variable, like obj[varWithKey].
+Additional operators:
+
+    To delete a property: delete obj.prop.
+    To check if a property with the given key exists: "key" in obj.
+    To iterate over an object: for (let key in obj) loop.
+
+To make a “real copy” (a clone) we can use Object.assign or _.cloneDeep(obj).
