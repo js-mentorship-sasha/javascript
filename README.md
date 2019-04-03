@@ -1238,9 +1238,8 @@ The syntax is:
 ```(javascript)
 Object.assign(dest[, src1, src2, src3...])
 ```
-
-    Arguments dest, and src1, ..., srcN (can be as many as needed) are objects.
-    It copies the properties of all objects src1, ..., srcN into dest. In other words, properties of all arguments starting from the 2nd are copied into the 1st. Then it returns dest.
+   Arguments dest, and src1, ..., srcN (can be as many as needed) are objects.
+   It copies the properties of all objects src1, ..., srcN into dest. In other words, properties of all arguments starting from the 2nd are copied into the 1st. Then it returns dest.
 
 For instance, we can use it to merge several objects into one:
 ```(javascript)
@@ -1300,11 +1299,9 @@ To fix that, we should use the cloning loop that examines each value of user[key
 There’s a standard algorithm for deep cloning that handles the case above and more complex cases, called the Structured cloning algorithm. In order not to reinvent the wheel, we can use a working implementation of it from the JavaScript library lodash, the method is called _.cloneDeep(obj).
 ### Summary of objects
 To access a property, we can use:
-
     The dot notation: obj.property.
     Square brackets notation obj["property"]. Square brackets allow to take the key from a variable, like obj[varWithKey].
 Additional operators:
-
     To delete a property: delete obj.prop.
     To check if a property with the given key exists: "key" in obj.
     To iterate over an object: for (let key in obj) loop.
