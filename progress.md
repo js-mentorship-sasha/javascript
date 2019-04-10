@@ -1,1 +1,1 @@
-http://javascript.info/object#the-for-in-loop
+http://javascript.info/garbage-collection
