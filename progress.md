@@ -1,1 +1,1 @@
-http://javascript.info/object#property-value-shorthand
+http://javascript.info/object#the-for-in-loop
