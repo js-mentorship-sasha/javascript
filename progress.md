@@ -1,1 +1,1 @@
-http://javascript.info/garbage-collection
+http://javascript.info/symbol
