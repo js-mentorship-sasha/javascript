@@ -1,1 +1,1 @@
-http://javascript.info/symbol
+http://javascript.info/object-methods
