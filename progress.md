@@ -1,1 +1,1 @@
-http://javascript.info/object-methods
+http://javascript.info/object-toprimitive
