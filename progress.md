@@ -1,1 +1,1 @@
-http://javascript.info/object-toprimitive
+http://javascript.info/constructor-new#return-from-constructors
