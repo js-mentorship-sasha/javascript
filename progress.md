@@ -1,1 +1,1 @@
-http://javascript.info/constructor-new#return-from-constructors
+http://javascript.info/number
