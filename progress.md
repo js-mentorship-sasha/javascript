@@ -1,1 +1,1 @@
-http://javascript.info/number
+http://javascript.info/array
