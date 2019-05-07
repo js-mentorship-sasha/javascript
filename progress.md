@@ -1,1 +1,1 @@
-http://javascript.info/array
+http://javascript.info/array-methods
