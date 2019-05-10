@@ -1,1 +1,1 @@
-http://javascript.info/array-methods
+http://javascript.info/array-methods#slice
