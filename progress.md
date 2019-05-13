@@ -1,1 +1,1 @@
-http://javascript.info/array-methods#slice
+http://javascript.info/array-methods#reduce-reduceright
