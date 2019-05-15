@@ -1,1 +1,1 @@
-http://javascript.info/array-methods#reduce-reduceright
+http://javascript.info/iterable
