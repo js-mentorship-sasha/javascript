@@ -1297,6 +1297,7 @@ alert(clone.sizes.width); // 51, see the result from the other one
 To fix that, we should use the cloning loop that examines each value of user[key] and, if it’s an object, then replicate its structure as well. That is called a “deep cloning”.
 
 There’s a standard algorithm for deep cloning that handles the case above and more complex cases, called the Structured cloning algorithm. In order not to reinvent the wheel, we can use a working implementation of it from the JavaScript library lodash, the method is called _.cloneDeep(obj).
+
 ### Summary of objects
 To access a property, we can use:
     The dot notation: obj.property.
@@ -1328,7 +1329,8 @@ To make a “real copy” (a clone) we can use Object.assign or _.cloneDeep(obj)
   ```
 
 
-#Object methods, *this*
+
+ #Object methods, *this*
 If functino sored in the object it's called method.
 Methods allow objects to “act” like object.doSomething().
 Methods can reference the object as this.
