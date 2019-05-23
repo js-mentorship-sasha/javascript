@@ -1332,10 +1332,15 @@ To make a “real copy” (a clone) we can use Object.assign or _.cloneDeep(obj)
 
  # Object methods, *this*
   If functino sored in the object it's called method.
+
   Methods allow objects to “act” like object.doSomething().
+
   Methods can reference the object as this.
+
   When a function is called in the “method” syntax: object.method(), the value of this during the call is object.
+
   Arrow functions are special: they have no this. When this is accessed inside an arrow function, it is taken from outside.
+
 
   To access the object, a method we can use the *this* keyword.
   Example:
