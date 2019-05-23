@@ -1310,7 +1310,7 @@ Additional operators:
 To make a “real copy” (a clone) we can use Object.assign or _.cloneDeep(obj).
 
 
-#Garbage collection
+# Garbage collection
   Javascript have garbage collection. Simple example:
   ```(javascript)
   let user = {
