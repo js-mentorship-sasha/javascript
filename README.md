@@ -1307,3 +1307,76 @@ Additional operators:
     To iterate over an object: for (let key in obj) loop.
 
 To make a “real copy” (a clone) we can use Object.assign or _.cloneDeep(obj).
+
+
+#Garbage collection
+  Javascript have garbage collection. Simple example:
+  ```(javascript)
+  let user = {
+  name: "John"
+};
+```
+  If we delete user, then proparty name will be also automatical deleted.
+
+
+~~!!!(need create note ablut Symbol() ) #Symbol
+  Symbol is a primitive tupe for unique identifiers and created by Sybmol() with an optional description.
+  Symbols don’t auto-convert to a string 
+  ```(javascript)
+  let id = Symbol("id");
+  alert(id); // TypeError: Cannot convert a Symbol value to a string
+  ```
+
+
+#Object methods, *this*
+If functino sored in the object it's called method.
+Methods allow objects to “act” like object.doSomething().
+Methods can reference the object as this.
+When a function is called in the “method” syntax: object.method(), the value of this during the call is object.
+Arrow functions are special: they have no this. When this is accessed inside an arrow function, it is taken from outside.
+
+  To access the object, a method we can use the *this* keyword.
+  Example:
+  ```(javascript)
+  let user = {
+  name: "John",
+  age: 30,
+
+  sayHi() {
+    alert(this.name);
+  }
+ };
+ user.sayHi(); // John
+  ```
+  So *this* call the mail/global name of the object/etc.. .
+ We use *this* becase name of variable can be changed while machine do our code, that's why we prefer to use *this*.
+
+## **this* is not bound
+  One function can have different *this* :
+  ```(javascript)
+let user = { name: "John" };
+let admin = { name: "Admin" };
+
+function sayHi() {
+  alert( this.name );
+}
+
+// use the same functions in two objects
+user.f = sayHi;
+admin.f = sayHi;
+
+// these calls have different this
+// "this" inside the function is the object "before the dot"
+user.f(); // John  (this == user)
+admin.f(); // Admin  (this == admin)
+
+admin['f'](); // Admin (dot or square brackets access the method – doesn't matter)
+  ```
+  also, we can call function without an object:
+  ```(javascript)
+function sayHi() {
+  alert(this);
+}
+
+sayHi(); // undefined
+  ```
