@@ -1330,7 +1330,7 @@ To make a “real copy” (a clone) we can use Object.assign or _.cloneDeep(obj)
 
 
 
- #Object methods, *this*
+ # Object methods, *this*
 If functino sored in the object it's called method.
 Methods allow objects to “act” like object.doSomething().
 Methods can reference the object as this.
