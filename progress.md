@@ -1,1 +1,1 @@
-http://javascript.info/iterable
+http://javascript.info/destructuring-assignment
